@@ -1,0 +1,241 @@
+// C A R D
+
+
+.card {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    transition: all 50ms ease;
+}
+
+.card__container {
+    @include flex($justify-content: space-between);
+    box-shadow: .1rem 0rem 0rem .2rem  $clr-prime, -.1rem 0rem 0rem .2rem  $clr-prime;
+    padding: 1.3rem 1rem;
+    border-radius: 1rem;
+    background-color: $clr-black;
+
+    & .card__h4 {
+        margin: 0;
+        color: $clr-prime;
+        transition: all 300ms ease;
+    }
+
+    & .card__arrow::after {
+        content: "▲";
+        display: inline-block;
+        font-size: 2rem;
+        color: $clr-prime;
+        transition: transform 150ms ease;
+    }
+}
+
+.card__content .card__text {
+    margin: 2rem .5rem;
+}
+
+.card__contact {
+    @include flex(column);
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.card__fotos {
+    position: relative;
+    @include flex(column);
+    gap: 2rem;
+    margin: 2rem 0;
+
+    & .card__picture img {
+        width: 100%;
+        border: .2rem solid $clr-white;
+        border-radius: $card__foto--border-radius;
+    }
+}
+
+.video__checkbox {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    box-shadow: .1rem 0rem 0rem .2rem  $clr-contrast, -.1rem 0rem 0rem .2rem  $clr-contrast;
+    transform: translate(2.5rem, 3.5rem);
+}
+
+
+.video__agreement {
+    @include flex;
+    padding: 1rem 1rem 1rem 2rem;
+    margin: 2rem 0 0;
+    box-shadow: .1rem 0rem 0rem .2rem  $clr-contrast, -.1rem 0rem 0rem .2rem  $clr-contrast;
+    border-radius: 1.5rem;
+
+    & .video__label {
+        padding: 0 0 0 3rem;
+
+
+        & .video__agreetext {
+            margin: 0 0 0 2rem;
+            font-family: isidora-semibold;
+            color: $clr-contrast;
+        }
+    }
+}
+
+.videobox {
+    .video__blocker {
+        position: absolute;
+        @include flex;
+        background-color: $clr-grey-dark-tr;
+        width: 100%;
+        height: 100%;
+        border: .2rem solid $clr-contrast;
+        border-radius: $card__foto--border-radius;
+        z-index: 2;
+
+        & .video__blocker--text {
+            margin: 0;
+            padding: 1rem;
+            font-family: isidora-semibold;
+            font-size: 2.5rem;
+            color: $clr-contrast;
+            background-color: $clr-grey-dark-tr;
+        }
+    }
+}
+
+.card__videos {
+    // position: relative;
+    @include flex(column);
+    gap: 2rem;
+    margin: 2rem 0;
+
+    & h5 {
+        margin: 2rem 0 -1rem 1rem;
+        align-self: start;
+        font-style: 1.6rem;
+    }
+    & h5:first-child {
+        margin: 0 0 -1rem 1rem;
+
+    }
+
+    & .card__videos--iframe {
+        width: 100%;
+        height: 100%;
+        border: .2rem solid $clr-white;
+        border-radius: $card__foto--border-radius;
+    }
+}
+
+/* V I D E O B O X   S W I T C H */
+.video__checkbox:checked~.card__videos .video__blocker {
+    display: none;
+}
+
+
+/* G U E S T B O X   S W I T C H */
+// card Checkbox
+.card__checkbox {
+    display: none;
+}
+
+.card__label {
+    cursor: pointer;
+}
+
+// card Container
+.card__checkbox:checked+.card__label .card__arrow::after {
+    transform: rotate(-180deg);
+}
+
+// card Content
+.card__text,
+.button__ghost,
+.button__ghost a,
+.card__contact,
+.card__picture img,
+.card__videos--iframe,
+.videobox,
+.video__agreement {
+    transform-origin: top;
+    transform: scale(1);
+    transition: all 150ms ease;
+}
+
+.card__checkbox:not(:checked)~.card__content {
+
+    & .card__text,
+    .button__ghost,
+    .button__ghost a,
+    .card__contact,
+    .card__picture img,
+    .card__videos--iframe,
+    .video__checkbox,
+    .video__blocker,
+    .video__agreement,
+    .card__videos h5 {
+        transform: scale(0);
+    }
+
+    & .card__text {
+        margin: 0;
+        font-size: 0;
+    }
+
+    & button,
+    a {
+        height: 0;
+    }
+
+    .card__contact {
+        padding: 0;
+        gap: 0;
+    }
+
+    .card__fotos {
+        margin: 0;
+        height: 0;
+
+        & .card__picture img {
+            width: 0;
+        }
+    }
+
+    .video__agreement,
+    .videobox,
+    .video__blocker,
+    .card__videos,
+    .card__videos--iframe {
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+/* I N F O B O X   S W I T C H */
+// INFOBOX CONTENT SWITCH
+.pagebox__checkbox:not(:checked)~.infobox__content {
+    margin: 0rem;
+    padding: 0;
+
+    & .card {
+        margin: 0;
+        padding: 0;
+        height: 0;
+        visibility: hidden;
+        border: 0;
+    }
+
+    & .card__arrow {
+        display: none;
+    }
+
+    & .card__h4 {
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        outline: none;
+    }
+
+}
